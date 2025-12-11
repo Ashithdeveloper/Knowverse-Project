@@ -31,7 +31,7 @@ export const createPost = async (req, res) => {
     const newPost = new Post({
       user: req.user._id,
       text,
-      media: mediaUrl, // make sure your schema has a 'media' field instead of just 'img'
+      media: mediaUrl, 
     });
 
     await newPost.save();

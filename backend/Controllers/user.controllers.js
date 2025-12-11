@@ -123,7 +123,7 @@ export const updateUser = async (req,res) =>{
         user.username = username || user.username;
         user.email = email || user.email;
         user.bio = bio || user.bio;
-        user.link = link || user.link;
+        user.links = link || user.links;
         user.profileImg = profileImg || user.profileImg;
         user.coverImg = coverImg || user.coverImg;
         await user.save();
