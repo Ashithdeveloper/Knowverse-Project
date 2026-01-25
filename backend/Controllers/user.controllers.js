@@ -88,6 +88,7 @@ export const updateUser = async (req,res) =>{
         let { profileImg , coverImg } = req.body;
         
         let user = await User.findById({_id : userId});
+        
         if(!user){
             return res.status(404).json({ error: "User not found" });
         }
