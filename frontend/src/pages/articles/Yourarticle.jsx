@@ -26,7 +26,7 @@ const YourArticle = ({id}) => {
     };
     fetchData();
   });
-
+//this function is to delete article
   const deleteArticle = async (id) => {
     try {
       const res = await fetch(`${baseUrl}/api/articles/${id}`, {
