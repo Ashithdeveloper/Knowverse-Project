@@ -46,7 +46,7 @@ const CreatePost = () => {
       setText("");
       setMedia(null);
       if (mediaRef.current) mediaRef.current.value = "";
-      toast.success("Broadcast posted to CyberHaven!");
+      toast.success("Broadcast posted to KnowVerse!");
       queryClient.setQueryData(["posts"], (oldPosts) => {
         if (!oldPosts) return [newPost];
         return [newPost, ...oldPosts];
@@ -83,7 +83,7 @@ const CreatePost = () => {
     setText((prev) => (prev ? `${prev} ${tag}` : tag));
   };
 
-  const suggestedTags = ["#CyberSecurity", "#DevOps", "#WebDev", "#AI", "#ZeroDay"];
+  const suggestedTags = ["#Knowledge", "#DevOps", "#WebDev", "#AI", "#Security"];
 
   return (
     <div className="p-4 sm:p-5 border-b border-slate-800/80 bg-slate-900/30 backdrop-blur-md">
@@ -102,7 +102,7 @@ const CreatePost = () => {
         <form className="flex flex-col gap-3 flex-1 min-w-0" onSubmit={handleSubmit}>
           <textarea
             className="w-full bg-transparent text-slate-100 placeholder-slate-500 text-base sm:text-lg resize-none focus:outline-none min-h-[70px] leading-relaxed"
-            placeholder="Share an insight, security advisory, or code breakthrough..."
+            placeholder="Share an insight, research discovery, or code breakthrough..."
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows={2}

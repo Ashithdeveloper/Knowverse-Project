@@ -48,12 +48,13 @@ const LoginPage = () => {
       }
 
       if (data.token) {
+        localStorage.setItem("knowverse_token", data.token);
         localStorage.setItem("cyberhaven_token", data.token);
       }
       return data;
     },
     onSuccess: (data) => {
-      toast.success("Welcome back to CyberHaven!");
+      toast.success("Welcome back to KnowVerse!");
       queryClient.setQueryData(["authUser"], data);
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
@@ -112,10 +113,10 @@ const LoginPage = () => {
                 PLATFORM ACCESS
               </span>
               <h2 className="font-heading font-black text-2xl sm:text-3xl text-slate-100 mt-4 leading-tight">
-                The Secure Network for Tech & Security Innovators
+                The Premier Knowledge Network for Developers & Engineers
               </h2>
               <p className="text-sm text-slate-400 mt-3 leading-relaxed">
-                Log in to broadcast updates, publish in-depth knowledge base articles, and collaborate with top cybersecurity minds.
+                Log in to broadcast updates, publish in-depth technical research, and collaborate across the KnowVerse universe.
               </p>
             </div>
 
@@ -150,7 +151,7 @@ const LoginPage = () => {
               Welcome back
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mb-6">
-              Enter your credentials to access your CyberHaven account
+              Enter your credentials to access your KnowVerse account
             </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -217,7 +218,7 @@ const LoginPage = () => {
                     <span>Verifying Credentials...</span>
                   </div>
                 ) : (
-                  "Sign In to CyberHaven"
+                  "Sign In to KnowVerse"
                 )}
               </button>
 

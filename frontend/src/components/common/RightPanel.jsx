@@ -157,19 +157,19 @@ const RightPanel = () => {
           </div>
         </div>
 
-        {/* Footer info & CyberHaven telemetry badge */}
+        {/* Footer info & KnowVerse telemetry badge */}
         <div className="px-2 text-[11px] text-slate-500 flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10B981]" />
             <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">
-              Network Online • TLS 1.3
+              KnowVerse Online • TLS 1.3
             </span>
           </div>
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-slate-500">
             <Link to="/articles" className="hover:text-cyan-400 transition-colors">Knowledge Base</Link>
-            <Link to="/search" className="hover:text-cyan-400 transition-colors">Security Directory</Link>
+            <Link to="/search" className="hover:text-cyan-400 transition-colors">Developer Directory</Link>
             <span>•</span>
-            <span>© 2026 CyberHaven</span>
+            <span>© 2026 KnowVerse</span>
           </div>
         </div>
       </div>

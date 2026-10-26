@@ -91,7 +91,7 @@ const CyberLogo = ({ size = "md", showText = true, className = "" }) => {
               KNOW<span className="text-white">VERSE</span>
             </span>
           </div>
-          <span className="text-[9px] font-mono tracking-widest text-cyan-400/80 uppercase font-semibold mt-0.5">
+          <span className="text-[9px] font-mono tracking-widest text-cyan-400/80 uppercase font-semibold mt-0.5 whitespace-nowrap">
             KNOWLEDGE & DEV NETWORK
           </span>
         </div>

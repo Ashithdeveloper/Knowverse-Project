@@ -53,12 +53,13 @@ const SignUpPage = () => {
       }
 
       if (data.token) {
+        localStorage.setItem("knowverse_token", data.token);
         localStorage.setItem("cyberhaven_token", data.token);
       }
       return data;
     },
     onSuccess: (data) => {
-      toast.success("Account created successfully! Welcome to CyberHaven.");
+      toast.success("Account created successfully! Welcome to KnowVerse.");
       queryClient.setQueryData(["authUser"], data);
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
@@ -121,10 +122,10 @@ const SignUpPage = () => {
                 JOIN THE ELITE NETWORK
               </span>
               <h2 className="font-heading font-black text-2xl sm:text-3xl text-slate-100 mt-4 leading-tight">
-                Connect with the World&apos;s Foremost Cyber Minds
+                Connect with the World&apos;s Foremost Tech Minds
               </h2>
               <p className="text-sm text-slate-400 mt-3 leading-relaxed">
-                Create your developer identity, publish technical discoveries, and stay ahead of zero-day exploits.
+                Create your developer identity, publish technical discoveries, and collaborate across the KnowVerse universe.
               </p>
             </div>
 
@@ -159,7 +160,7 @@ const SignUpPage = () => {
               Create your account
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mb-6">
-              Enter your details to register on CyberHaven
+              Enter your details to register on KnowVerse
             </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
@@ -263,10 +264,10 @@ const SignUpPage = () => {
                 {isPending ? (
                   <div className="flex items-center justify-center gap-2">
                     <LoadingSpinner size="sm" />
-                    <span>Registering Security Profile...</span>
+                    <span>Creating KnowVerse Account...</span>
                   </div>
                 ) : (
-                  "Create Free Account"
+                  "Create KnowVerse Account"
                 )}
               </button>
 

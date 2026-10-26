@@ -181,7 +181,7 @@ const ArticlesReads = () => {
             />
             <div>
               <div className="font-bold text-sm text-slate-200 group-hover:text-cyan-300 transition-colors flex items-center gap-1">
-                <span>{author.fullName || "CyberHaven Author"}</span>
+                <span>{author.fullName || "KnowVerse Author"}</span>
                 <HiBadgeCheck className="w-4 h-4 text-cyan-400" />
               </div>
               <span className="text-xs text-slate-400">
@@ -235,7 +235,7 @@ const ArticlesReads = () => {
 
         {/* Article Footer Note */}
         <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>Published on CyberHaven Secure Knowledge Network</p>
+          <p>Published on KnowVerse Knowledge Network</p>
           <button
             onClick={handleShare}
             className="btn btn-sm btn-outline rounded-xl text-cyan-400 border-cyan-500/30 hover:bg-cyan-500/10"

@@ -38,6 +38,7 @@ const Sidebar = () => {
       return data;
     },
     onSuccess: () => {
+      localStorage.removeItem("knowverse_token");
       localStorage.removeItem("cyberhaven_token");
       toast.success("Logged out successfully");
       queryClient.setQueryData(["authUser"], null);

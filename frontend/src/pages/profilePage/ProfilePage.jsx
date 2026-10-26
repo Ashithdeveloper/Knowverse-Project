@@ -139,7 +139,7 @@ const ProfilePage = () => {
         <div className="py-24 text-center text-slate-400">
           <h2 className="text-xl font-bold text-slate-200">User Not Found</h2>
           <p className="text-sm mt-1 text-slate-500">
-            The profile &quot;{username}&quot; does not exist on CyberHaven.
+            The profile &quot;{username}&quot; does not exist on KnowVerse.
           </p>
           <Link to="/" className="btn btn-sm btn-outline mt-4 rounded-xl">
             Go Home

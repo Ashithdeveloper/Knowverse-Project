@@ -62,34 +62,40 @@ h1, h2, h3, .font-heading {
   border: 1px solid rgba(51, 65, 85, 0.8);
 }
 
-/* Cyber Glow Accents */
-.cyber-glow-cyan {
+/* KnowVerse Glow Accents */
+.cyber-glow-cyan,
+.knowverse-glow-cyan {
   box-shadow: 0 0 20px -3px rgba(14, 165, 233, 0.35);
 }
 
-.cyber-glow-purple {
+.cyber-glow-purple,
+.knowverse-glow-purple {
   box-shadow: 0 0 20px -3px rgba(168, 85, 247, 0.35);
 }
 
-.cyber-text-gradient {
+.cyber-text-gradient,
+.knowverse-text-gradient {
   background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.cyber-badge-cyan {
+.cyber-badge-cyan,
+.knowverse-badge-cyan {
   background: rgba(14, 165, 233, 0.12);
   color: #38BDF8;
   border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
-.cyber-badge-purple {
+.cyber-badge-purple,
+.knowverse-badge-purple {
   background: rgba(168, 85, 247, 0.12);
   color: #C084FC;
   border: 1px solid rgba(168, 85, 247, 0.25);
 }
 
-.cyber-badge-emerald {
+.cyber-badge-emerald,
+.knowverse-badge-emerald {
   background: rgba(16, 185, 129, 0.12);
   color: #34D399;
   border: 1px solid rgba(16, 185, 129, 0.25);

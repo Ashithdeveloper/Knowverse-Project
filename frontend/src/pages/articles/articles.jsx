@@ -60,7 +60,7 @@ const Articles = () => {
       return data;
     },
     onSuccess: (newArticle) => {
-      toast.success("Article published to CyberHaven Knowledge Base!");
+      toast.success("Article published to KnowVerse Knowledge Base!");
       setImage(null);
       setText("");
       setTitle("");

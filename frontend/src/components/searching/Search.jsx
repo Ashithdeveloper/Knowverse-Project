@@ -101,7 +101,7 @@ const Search = () => {
       <div className="sticky top-0 z-20 bg-[#080C14]/85 backdrop-blur-xl border-b border-slate-800/80 p-4">
         <h1 className="text-lg font-heading font-bold text-slate-100 mb-3 flex items-center gap-2">
           <HiOutlineSearch className="w-5 h-5 text-cyan-400" />
-          <span>Explore CyberHaven Network</span>
+          <span>Explore KnowVerse Network</span>
         </h1>
 
         {/* Search Input Box */}
@@ -186,7 +186,7 @@ const Search = () => {
               <HiOutlineSearch className="w-6 h-6" />
             </div>
             <p className="text-sm font-semibold text-slate-300">
-              Find Anyone or Anything on CyberHaven
+              Find Anyone or Anything on KnowVerse
             </p>
             <p className="text-xs text-slate-500 mt-1">
               Search by username, full name, or search technical research articles.
