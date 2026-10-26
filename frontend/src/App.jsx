@@ -23,7 +23,9 @@ function App() {
     queryKey: ["authUser"],
     queryFn: async () => {
       try {
-        const token = localStorage.getItem("cyberhaven_token");
+        const token =
+          localStorage.getItem("knowverse_token") ||
+          localStorage.getItem("cyberhaven_token");
         const headers = {
           "Content-Type": "application/json",
         };
@@ -55,7 +57,7 @@ function App() {
       <div className="flex flex-col gap-3 justify-center items-center h-screen bg-[#080C14] text-slate-100">
         <LoadingSpinner size="lg" />
         <span className="text-xs font-mono text-cyan-400 tracking-widest uppercase">
-          Initializing CyberHaven...
+          Initializing KnowVerse...
         </span>
       </div>
     );
