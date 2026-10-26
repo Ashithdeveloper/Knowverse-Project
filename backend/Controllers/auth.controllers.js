@@ -40,9 +40,8 @@ export const signup = async (req, res) => {
 
     // Save the user to the database
     if (newUser) {
-      
       await newUser.save();
-      generateToken(newUser._id, res);
+      const token = generateToken(newUser._id, res);
       res.status(201).json({
         _id: newUser._id,
         username: newUser.username,
@@ -54,6 +53,7 @@ export const signup = async (req, res) => {
         coverImg: newUser.coverImg,
         bio: newUser.bio,
         links: newUser.links,
+        token,
       });
     } else {
       res.status(400).json({ error: "Failed to create user" });
@@ -71,7 +71,7 @@ export const login = async (req, res) => {
      if(!user || !isPasswordCorrect){
        return res.status(401).json({ error: "Invalid credentials" });
      }
-     generateToken(user._id, res);
+     const token = generateToken(user._id, res);
      res.status(200).json({
        _id: user._id,
        username: user.username,
@@ -82,7 +82,8 @@ export const login = async (req, res) => {
        profileImg: user.profileImg,
        coverImg: user.coverImg,
        bio: user.bio,
-       link: user.link
+       links: user.links,
+       token,
      });
    } catch (error) {
      console.log(error);

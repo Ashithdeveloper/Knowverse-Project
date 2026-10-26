@@ -1,3 +1,11 @@
 
-//export const baseUrl = "http://localhost:5000"
-export const baseUrl = "https://knowverse-jiw0.onrender.com";
+// Auto-detect base URL for local development or production
+export const baseUrl =
+  import.meta.env.VITE_API_BASE_URL !== undefined
+    ? import.meta.env.VITE_API_BASE_URL
+    : typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1")
+    ? "http://localhost:5000"
+    : "";
+

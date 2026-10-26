@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SignUpPage from "./pages/auth/signup/SignUpPage";
@@ -14,6 +15,7 @@ import LoadingSpinner from "./components/common/LoadingSpinner";
 import Articles from "./pages/articles/articles";
 import Search from "./components/searching/Search";
 import BottomNavbar from "./components/common/BottomNavbar";
+import MobileTopHeader from "./components/common/MobileTopHeader";
 import ArticlesReads from "./pages/articles/ArticlesReads";
 
 function App() {
@@ -21,42 +23,53 @@ function App() {
     queryKey: ["authUser"],
     queryFn: async () => {
       try {
+        const token = localStorage.getItem("cyberhaven_token");
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`;
+        }
+
         const res = await fetch(`${baseUrl}/api/auth/me`, {
           method: "GET",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          retry: false,
+          headers,
         });
+
         const data = await res.json();
-        if (data.error) {
+        if (data.error || !res.ok) {
           return null;
         }
-        if (!res.ok) {
-          throw new Error(data.error || "Failed to fetch user");
-        }
-        console.log("Auth user:", data);
 
         return data;
-      } catch (error) {
-        throw new Error(error.message);
+      } catch {
+        return null;
       }
     },
+    retry: 1,
   });
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex flex-col gap-3 justify-center items-center h-screen bg-[#080C14] text-slate-100">
         <LoadingSpinner size="lg" />
+        <span className="text-xs font-mono text-cyan-400 tracking-widest uppercase">
+          Initializing CyberHaven...
+        </span>
       </div>
     );
   }
 
   return (
-    <>
-      <div className="flex max-w-6x1 mx-auto">
+    <div className="min-h-screen bg-[#080C14] text-slate-100 flex flex-col justify-between">
+      {/* Mobile Top Header */}
+      {authUser && <MobileTopHeader authUser={authUser} />}
+
+      {/* Main Container */}
+      <div className="flex w-full max-w-7xl mx-auto flex-1 min-w-0">
         {authUser ? <Sidebar /> : null}
+
         <Routes>
           <Route
             path="/"
@@ -90,12 +103,44 @@ function App() {
             path="/profile/:username"
             element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
           />
+          {/* Catch all redirect */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+
         {authUser ? <RightPanel /> : null}
-        <Toaster />
       </div>
+
+      {/* Mobile Bottom Navigation */}
       {authUser ? <BottomNavbar authUser={authUser} /> : null}
-    </>
+
+      {/* Modern Dark Toaster */}
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            background: "#0F172A",
+            color: "#F8FAFC",
+            border: "1px solid rgba(56, 189, 248, 0.25)",
+            borderRadius: "14px",
+            boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.8)",
+            fontSize: "13px",
+            fontFamily: "var(--font-sans)",
+          },
+          success: {
+            iconTheme: {
+              primary: "#38BDF8",
+              secondary: "#0F172A",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "#F43F5E",
+              secondary: "#0F172A",
+            },
+          },
+        }}
+      />
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import User from "../Models/user.model.js";
 import Notification from "../Models/notification.model.js";
 import bcrypt from "bcryptjs";
-import cloudinay from "cloudinary"
+import { v2 as cloudinary } from "cloudinary";
 
 export const getProfile = async (req, res)=>{
     try {
@@ -108,16 +108,16 @@ export const updateUser = async (req,res) =>{
         }
         if(profileImg){
             if(user.profileImg){
-                await cloudinay.uploader.destroy(user.profileImg.split("/").pop().split(".")[0]);
+                await cloudinary.uploader.destroy(user.profileImg.split("/").pop().split(".")[0]);
             }
-            const uploadedResponse = await cloudinay.uploader.upload(profileImg)
+            const uploadedResponse = await cloudinary.uploader.upload(profileImg)
             profileImg = uploadedResponse.secure_url;
         }
         if(coverImg){
             if(user.coverImg){
-                await cloudinay.uploader.destroy(user.coverImg.split("/").pop().split(".")[0]);
+                await cloudinary.uploader.destroy(user.coverImg.split("/").pop().split(".")[0]);
             }
-            const uploadedResponse = await cloudinay.uploader.upload(coverImg)
+            const uploadedResponse = await cloudinary.uploader.upload(coverImg)
             coverImg = uploadedResponse.secure_url;
         }
         user.fullName = fullName || user.fullName;
@@ -138,18 +138,22 @@ export const updateUser = async (req,res) =>{
 }
 //For searching the users
 
-export const searchUser = async( req,res) =>{
-    const query = req.query.q;
-    try {
-        const user = await User.find({
-            $or: [
-                { username : { $regex: query, $options : 'i' }},
-                { fullname:  { $regex : query , $options: "i"}},
-            ]
-        }).select( "_id username fullName email profileImg ")
-        res.json(user)
-
-    } catch (error) {
-        res.status(400).json({message:"server error on search"})
-    }
-}
+export const searchUser = async (req, res) => {
+  const query = req.query.q?.trim();
+  if (!query) {
+    return res.status(200).json([]);
+  }
+  try {
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const users = await User.find({
+      $or: [
+        { username: { $regex: escapedQuery, $options: "i" } },
+        { fullName: { $regex: escapedQuery, $options: "i" } },
+      ],
+    }).select("_id username fullName email profileImg bio");
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("User search error:", error);
+    res.status(500).json({ message: "Server error on search" });
+  }
+};
